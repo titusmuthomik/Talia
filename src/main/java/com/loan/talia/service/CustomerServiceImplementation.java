@@ -30,7 +30,10 @@ public class CustomerServiceImplementation implements CustomerService{
 
     @Override
     public Customer getCustomerById(String id) {
-        return null;
+        return customers.stream()
+                .filter(customerFilter -> customerFilter.getCustomerId().equalsIgnoreCase(id))
+                .findFirst()
+                .orElseThrow( () -> new  NullPointerException("No customer found with the id " + id));
     }
 
     @Override
