@@ -30,6 +30,13 @@ public class CustomerServiceImplementation implements CustomerService{
 
     @Override
     public Customer getCustomerById(String id) {
+//        for(Customer customer : customers) {
+//            if(customer.getCustomerId().equalsIgnoreCase(id)) {
+//                return customer;
+//            }
+//        }
+//        return  null;
+
         return customers.stream()
                 .filter(customerFilter -> customerFilter.getCustomerId().equalsIgnoreCase(id))
                 .findFirst()
@@ -37,12 +44,26 @@ public class CustomerServiceImplementation implements CustomerService{
     }
 
     @Override
-    public Customer updateCustomer(String id) {
-        return null;
+    public Customer updateCustomer(String id, Customer updatedCustomer) {
+        Customer customer = customers.stream()
+                .filter(customerFilter -> customerFilter.getCustomerId().equalsIgnoreCase(id))
+                .findFirst()
+                .orElseThrow( () -> new  NullPointerException("No customer found with the id " + id));
+        customer.setFirstName(updatedCustomer.getFirstName());
+        customer.setLastName(updatedCustomer.getFirstName());
+
+        return customer;
     }
 
     @Override
     public String deleteCustomer(String id) {
-        return null;
+        for(Customer customer : customers) {
+            if(customer.getCustomerId().equalsIgnoreCase(id)) {
+                return "Customer deleted successfully";
+            }
+        }
+        return "No customer found with the above Id";
     }
+
+
 }
