@@ -1,17 +1,17 @@
 package com.loan.talia.service;
 
-import com.loan.talia.model.Customer;
+import com.loan.talia.entity.CustomerEntity;
 
 import java.util.List;
 
 public interface CustomerService {
-    Customer save(Customer customer);
+    CustomerEntity save(CustomerEntity customer);
 
-    List<Customer> getAllCustomers();
+    List<CustomerEntity> getAllCustomers();
 
-    Customer getCustomerById(String id);
+    CustomerEntity getCustomerById(Long id);
 
-    Customer updateCustomer(String id);
+    CustomerEntity updateCustomer(Long id, CustomerEntity customer);
 
-    String deleteCustomer(String id);
+    String deleteCustomer(Long id);
 }
