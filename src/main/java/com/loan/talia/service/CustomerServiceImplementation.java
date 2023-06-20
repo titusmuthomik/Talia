@@ -59,6 +59,7 @@ public class CustomerServiceImplementation implements CustomerService{
     public String deleteCustomer(String id) {
         for(Customer customer : customers) {
             if(customer.getCustomerId().equalsIgnoreCase(id)) {
+                customers.remove(customer);
                 return "Customer deleted successfully";
             }
         }
