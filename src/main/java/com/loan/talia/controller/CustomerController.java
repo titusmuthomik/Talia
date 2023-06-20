@@ -25,5 +25,13 @@ public class CustomerController {
         return  customerService.save(customer);
     }
 
-    
+    @GetMapping("/{id}")
+    public Customer getCustomerById(@PathVariable String id){
+        return customerService.getCustomerById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Customer updateCustomer(@PathVariable String id, @RequestBody Customer customer) {
+        return customerService.updateCustomer(id, customer);
+    }
 }

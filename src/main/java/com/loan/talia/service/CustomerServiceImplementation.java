@@ -50,7 +50,7 @@ public class CustomerServiceImplementation implements CustomerService{
                 .findFirst()
                 .orElseThrow( () -> new  NullPointerException("No customer found with the id " + id));
         customer.setFirstName(updatedCustomer.getFirstName());
-        customer.setLastName(updatedCustomer.getFirstName());
+        customer.setLastName(updatedCustomer.getLastName());
 
         return customer;
     }
