@@ -19,13 +19,13 @@ public class CustomerServiceImplementation implements CustomerService{
         }
 
         customers.add(customer);
-        
+
         return customer;
     }
 
     @Override
     public List<Customer> getAllCustomers() {
-        return null;
+        return  customers;
     }
 
     @Override
