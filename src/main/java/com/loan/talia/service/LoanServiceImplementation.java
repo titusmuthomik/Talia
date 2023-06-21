@@ -1,12 +1,14 @@
 package com.loan.talia.service;
 
 import com.loan.talia.model.Loan;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class LoanServiceImplementation implements LoanService{
 
     List<Loan> loans = new ArrayList<>();
@@ -14,7 +16,9 @@ public class LoanServiceImplementation implements LoanService{
     public Loan save(Loan loan) {
         if(loan.getLoanId() == null) {
             String loanId = UUID.randomUUID().toString();
+            String customerId = UUID.randomUUID().toString();
             loan.setLoanId(loanId);
+            loan.setCustomerId(customerId);
         }
 
         loans.add(loan);
@@ -65,7 +69,11 @@ public class LoanServiceImplementation implements LoanService{
 
     @Override
     public Loan getLoanByIdAndStatus(String status, String id) {
-        return null;
+        return loans.stream()
+                .filter(newLoan -> newLoan.getStatus().equalsIgnoreCase(status))
+                .filter(anotherLoan -> anotherLoan.getLoanId().equalsIgnoreCase(id))
+                .findFirst()
+                .orElseThrow(() -> new NullPointerException("No loan found with status " + status + " and id " + id));
     }
 
     @Override
